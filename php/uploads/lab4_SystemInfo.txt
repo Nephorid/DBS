@@ -1,0 +1,13 @@
+Ad: lab4
+Sistem Bilgileri:
+CPU Modeli: Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz
+RAM Boyutu: 4 GB
+RAM Turu: DDR3
+Disk1 Modeli: WDC WD3000JS-63PDB1 ATA Device
+Disk1 Boyutu: 279 GB
+Disk1 Turu: HDD
+Disk2 Modeli: VendorCo ProductCode USB Device
+Disk2 Boyutu: 29 GB
+Disk2 Turu: Belirtilmemis
+GPU Modeli: Intel(R) HD Graphics
+GPU Bellegi: 2058 MB

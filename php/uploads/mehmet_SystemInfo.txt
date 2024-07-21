@@ -1,0 +1,13 @@
+Ad: mehmet
+Sistem Bilgileri:
+CPU Modeli: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+RAM Boyutu: 16 GB
+RAM Turu: DDR4
+Disk1 Modeli: SAMSUNG MZALQ128HBHQ-000L2
+Disk1 Boyutu: 119 GB
+Disk1 Turu: SSD
+Disk2 Modeli: WDC WD10SPZX-08Z10
+Disk2 Boyutu: 931 GB
+Disk2 Turu: HDD
+GPU Modeli: NVIDIA GeForce GTX 1650 Ti
+GPU Bellegi: 4095 MB

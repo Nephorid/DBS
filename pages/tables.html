@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <title>Donanim Bilgi Sistemi</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .profile-dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .profile-dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .profile-dropdown:hover .profile-dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" id="sidenav-main" style="background-color: #E0E0E0;">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0">
+        <span class="ms-1 font-weight-bold">Donanim Bilgi Sistemi</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/dashboard.html">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>shop</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g transform="translate(0.000000, 148.000000)">
+                        <path class="color-background opacity-6" d="M46.7199583,10.7414583 L40.8449583,0.949791667 C40.4909749,0.360605034 39.8540131,0 39.1666667,0 L7.83333333,0 C7.1459869,0 6.50902508,0.360605034 6.15504167,0.949791667 L0.280041667,10.7414583 C0.0969176761,11.0460037 -1.23209662e-05,11.3946378 -1.23209662e-05,11.75 C-0.00758042603,16.0663731 3.48367543,19.5725301 7.80004167,19.5833333 L7.81570833,19.5833333 C9.75003686,19.5882688 11.6168794,18.8726691 13.0522917,17.5760417 C16.0171492,20.2556967 20.5292675,20.2556967 23.494125,17.5760417 C26.4604562,20.2616016 30.9794188,20.2616016 33.94575,17.5760417 C36.2421905,19.6477597 39.5441143,20.1708521 42.3684437,18.9103691 C45.1927731,17.649886 47.0084685,14.8428276 47.0000295,11.75 C47.0000295,11.3946378 46.9030823,11.0460037 46.7199583,10.7414583 Z"></path>
+                        <path class="color-background" d="M39.198,22.4912623 C37.3776246,22.4928106 35.5817531,22.0149171 33.951625,21.0951667 L33.92225,21.1107282 C31.1430221,22.6838032 27.9255001,22.9318916 24.9844167,21.7998837 C24.4750389,21.605469 23.9777983,21.3722567 23.4960833,21.1018359 L23.4745417,21.1129513 C20.6961809,22.6871153 17.4786145,22.9344611 14.5386667,21.7998837 C14.029926,21.6054643 13.533337,21.3722507 13.0522917,21.1018359 C11.4250962,22.0190609 9.63246555,22.4947009 7.81570833,22.4912623 C7.16510551,22.4842162 6.51607673,22.4173045 5.875,22.2911849 L5.875,44.7220845 C5.875,45.9498589 6.7517757,46.9451667 7.83333333,46.9451667 L19.5833333,46.9451667 L19.5833333,33.6066734 L27.4166667,33.6066734 L27.4166667,46.9451667 L39.1666667,46.9451667 C40.2482243,46.9451667 41.125,45.9498589 41.125,44.7220845 L41.125,22.2822926 C40.4887822,22.4116582 39.8442868,22.4815492 39.198,22.4912623 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="../pages/tables.html">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>office</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g id="office" transform="translate(153.000000, 2.000000)">
+                        <path class="color-background opacity-6" d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"></path>
+                        <path class="color-background" d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Bilgisayarlar</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <h6 class="font-weight-bolder mb-0" style="padding-top: 22px;">Bilgisayarlar</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group" style="padding-top: 22px;">
+              <input type="text" class="form-control" id="searchInput" placeholder="Ara...">
+            </div>
+            <div class="input-group ms-3" style="padding-top: 22px;">
+              <select class="form-select" id="filterSelect">
+                <option value="">Filtre Seçin</option>
+                <option value="department_name">İdari birim</option>
+                <option value="user_name">Ad</option>
+                <option value="cpu_model">CPU</option>
+                <option value="ram_size">RAM</option>
+                <option value="disk_model">Disk</option>
+                <option value="gpu_model">GPU</option>
+              </select>
+            </div>
+            <div class="input-group ms-3" style="padding-top: 22px;">
+              <button class="form-select" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Gizle/Göster
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item toggle-column" data-column="0" href="#"><input type="checkbox" class="column-checkbox" /> İdari birim</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="1" href="#"><input type="checkbox" class="column-checkbox" /> AD</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="2" href="#"><input type="checkbox" class="column-checkbox" /> GSM</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="3" href="#"><input type="checkbox" class="column-checkbox" /> E-POSTA</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="4" href="#"><input type="checkbox" class="column-checkbox" /> CPU</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="5" href="#"><input type="checkbox" class="column-checkbox" /> RAM</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="6" href="#"><input type="checkbox" class="column-checkbox" /> Disk</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="7" href="#"><input type="checkbox" class="column-checkbox" /> GPU</a></li>
+              </ul>                      
+            </div>
+          </div>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item dropdown" style="padding-top: 22px;">
+              <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Profile</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileSettingsModal">Profil Ayarları</a></li>
+                <li><a class="dropdown-item" href="../php/logout.php">Çıkış</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Bilgisayar özellikleri</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 sortable" data-sort="department_name">İdari birim</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 sortable" data-sort="user_name">Ad</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">GSM</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">E-Posta</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CPU</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">RAM</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disk</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">GPU</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">DUZENLE</th>
+                    </tr>
+                  </thead>
+                  <tbody style="font-size: 15px;" id="systemInfoTable">
+                  </tbody>
+                </table>
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center mt-3" id="pagination">
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer pt-3">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <label for="fileUploader" class="btn btn-primary">
+                    Dosya Seç
+                  </label>
+                  <input type="file" id="fileUploader" style="display: none;">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "../php/check_session.php",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                if (response.status !== "success") {
+                    window.location.href = "sign-in.html";
+                }
+            },
+            error: function () {
+                window.location.href = "sign-in.html";
+            }
+        });
+
+        $('#logout').on('click', function() {
+            $.ajax({
+                url: '../php/logout.php',
+                type: 'POST',
+                success: function(response) {
+                    window.location.href = 'sign-in.html';
+                },
+                error: function() {
+                    alert('Çıkış yapılamadı, lütfen tekrar deneyin.');
+                }
+            });
+        });
+    });
+  </script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="../assets/js/scripts.js"></script>
+  <div class="modal fade" id="profileSettingsModal" tabindex="-1" aria-labelledby="profileSettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileSettingsModalLabel">Profil Ayarları</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="profileSettingsForm">
+            <div class="mb-3">
+              <label for="profileUsername" class="form-label">Kullanıcı Adı</label>
+              <input type="text" class="form-control" id="profileUsername" name="username" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="profilePassword" class="form-label">Yeni Şifre</label>
+              <input type="password" class="form-control" id="profilePassword" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Düzenleme Formu Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Bilgisayar Özelliklerini Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" class="row g-3">
+                    <input type="hidden" id="editId" name="id">
+                    <div class="col-md-6">
+                        <label for="editDepartmentId" class="form-label">İdari birim</label>
+                        <select class="form-select" id="editDepartmentId" name="department_id" required>
+                            <option value="">İdari birim Seçin</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editUserName" class="form-label">Ad</label>
+                        <input type="text" class="form-control" id="editUserName" name="user_name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editEmail" class="form-label">E-Posta</label>
+                        <input type="email" class="form-control" id="editEmail" name="email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editGsm" class="form-label">GSM</label>
+                        <input type="text" class="form-control" id="editGsm" name="gsm" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editCpuModel" class="form-label">CPU Modeli</label>
+                        <input type="text" class="form-control" id="editCpuModel" name="cpu_model" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editRamSize" class="form-label">RAM Boyutu</label>
+                        <input type="text" class="form-control" id="editRamSize" name="ram_size" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editRamType" class="form-label">RAM Türü</label>
+                        <input type="text" class="form-control" id="editRamType" name="ram_type" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk1Model" class="form-label">Disk1 Modeli</label>
+                        <input type="text" class="form-control" id="editDisk1Model" name="disk1_model" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk1Size" class="form-label">Disk1 Boyutu</label>
+                        <input type="text" class="form-control" id="editDisk1Size" name="disk1_size" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk1Type" class="form-label">Disk1 Türü</label>
+                        <input type="text" class="form-control" id="editDisk1Type" name="disk1_type" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk2Model" class="form-label">Disk2 Modeli</label>
+                        <input type="text" class="form-control" id="editDisk2Model" name="disk2_model">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk2Size" class="form-label">Disk2 Boyutu</label>
+                        <input type="text" class="form-control" id="editDisk2Size" name="disk2_size">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editDisk2Type" class="form-label">Disk2 Türü</label>
+                        <input type="text" class="form-control" id="editDisk2Type" name="disk2_type">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editGpuModel" class="form-label">GPU Modeli</label>
+                        <input type="text" class="form-control" id="editGpuModel" name="gpu_model" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editGpuMemory" class="form-label">GPU Belleği</label>
+                        <input type="text" class="form-control" id="editGpuMemory" name="gpu_memory" required>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-danger" id="deleteButton">Sil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>

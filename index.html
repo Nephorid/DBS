@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bilgisayar bilgi sistemi</title>
+
+  <!-- Fonts and icons -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+  <!-- CSS Files -->
+  <link id="pagestyle" href="./assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: "./check_session.php",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+          if (response.status === "success") {
+            window.location.href = "./pages/dashboard.html";
+          } else {
+            window.location.href = "./pages/sign-in.html";
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("AJAX isteği sırasında bir hata oluştu:", status, error);
+          window.location.href = "./pages/sign-in.html";
+        }
+      });
+    });
+  </script>
+</head>
+
+<body class="vh-100">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-10 m-auto text-center">
+        <h6>Eğer otomatik olarak yönlendirilmezseniz, lütfen <a href="./pages/sign-in.html">bu bağlantıya</a> tıklayın.</h6>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

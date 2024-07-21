@@ -1,0 +1,13 @@
+Ad: ali alizada
+Sistem Bilgileri:
+CPU Modeli: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+RAM Boyutu: 16 GB
+RAM Turu: DDR4
+Disk Modeli: SAMSUNG MZALQ128HBHQ-000L2
+Disk Boyutu: 119 GB
+Disk Turu: SSD
+Disk Modeli: WDC WD10SPZX-08Z10
+Disk Boyutu: 931 GB
+Disk Turu: HDD
+GPU Modeli: NVIDIA GeForce GTX 1650 Ti
+GPU Bellegi: 4095 MB
