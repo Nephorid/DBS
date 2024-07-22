@@ -143,7 +143,6 @@ $(document).ready(function() {
         });
     });
     $(document).ready(function() {
-        // Profil modalını açmadan önce kullanıcı bilgilerini yükle
         $('#profileSettingsModal').on('show.bs.modal', function () {
           $.ajax({
             url: '../php/get_user_profile.php',
@@ -162,7 +161,6 @@ $(document).ready(function() {
           });
         });
       
-        // Profil ayarlarını kaydet
         $('#profileSettingsForm').on('submit', function(e) {
           e.preventDefault();
           $.ajax({

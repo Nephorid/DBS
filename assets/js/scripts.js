@@ -334,6 +334,43 @@ function applyColumnVisibility() {
 }
 
 $(document).ready(function() {
+    $('#profileSettingsModal').on('show.bs.modal', function () {
+      $.ajax({
+        url: '../php/get_user_profile.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          if (response.error) {
+            console.error(response.error);
+          } else {
+            $('#profileUsername').val(response.username);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+        }
+      });
+    });
+  
+    $('#profileSettingsForm').on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '../php/update_profile.php',
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          alert('Profil başarıyla güncellendi!');
+          $('#profileSettingsModal').modal('hide');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+          alert('Bir hata oluştu!');
+        }
+      });
+    });
+  });
+
+$(document).ready(function() {
     updateDropdownState();
     applyColumnVisibility();
 });

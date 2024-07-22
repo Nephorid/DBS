@@ -41,7 +41,7 @@
       const errorMessage = document.getElementById('error-message');
 
       form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Formun varsayılan gönderimini durdurur
+        event.preventDefault();
 
         const formData = new FormData(form);
         fetch('../php/login.php', {
