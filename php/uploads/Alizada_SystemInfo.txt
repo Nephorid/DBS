@@ -1,0 +1,20 @@
+Ad: Alizada
+GSM NO: 5318508993
+E-posta: nephoridriot@gmail.com
+Sistem Bilgileri:
+CPU Markası: Intel
+CPU Modeli: i5-10300H
+CPU Hızı: 2.50 GHz
+RAM Boyutu: 16 GB
+RAM Türü: DDR4
+Disk1 Markası: SAMSUNG
+Disk1 Modeli: MZALQ128HBHQ-000L2
+Disk1 Boyutu: 119 GB
+Disk1 Türü: SSD
+Disk2 Markası: WDC
+Disk2 Modeli: WD10SPZX-08Z10
+Disk2 Boyutu: 931 GB
+Disk2 Türü: HDD
+GPU Markası: NVIDIA
+GPU Modeli: GTX 1650
+GPU Belleği: 4095 MB

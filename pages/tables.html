@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/ac8bbcfca5.js" crossorigin="anonymous"></script>
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -113,9 +113,9 @@
             <div class="input-group ms-3" style="padding-top: 22px;">
               <select class="form-select" id="filterSelect">
                 <option value="">Filtre Seçin</option>
-                <option value="department_name">İdari birim</option>
+                <option value="department_name">Birim</option>
                 <option value="user_name">Ad</option>
-                <option value="cpu_model">CPU</option>
+                <option value="cpu_modeli">CPU</option>
                 <option value="ram_size">RAM</option>
                 <option value="disk_model">Disk</option>
                 <option value="gpu_model">GPU</option>
@@ -126,14 +126,22 @@
                 Gizle/Göster
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item toggle-column" data-column="0" href="#"><input type="checkbox" class="column-checkbox" /> İdari birim</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="1" href="#"><input type="checkbox" class="column-checkbox" /> AD</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="2" href="#"><input type="checkbox" class="column-checkbox" /> GSM</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="3" href="#"><input type="checkbox" class="column-checkbox" /> E-POSTA</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="4" href="#"><input type="checkbox" class="column-checkbox" /> CPU</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="5" href="#"><input type="checkbox" class="column-checkbox" /> RAM</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="6" href="#"><input type="checkbox" class="column-checkbox" /> Disk</a></li>
-                <li><a class="dropdown-item toggle-column" data-column="7" href="#"><input type="checkbox" class="column-checkbox" /> GPU</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="cpu_markasi" href="#"><input type="checkbox" class="column-checkbox" /> CPU Markası</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="cpu_modeli" href="#"><input type="checkbox" class="column-checkbox" /> CPU Modeli</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="cpu_hizi" href="#"><input type="checkbox" class="column-checkbox" /> CPU Hızı</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="ram_size" href="#"><input type="checkbox" class="column-checkbox" /> RAM Boyutu</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="ram_type" href="#"><input type="checkbox" class="column-checkbox" /> RAM Türü</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk1_markasi" href="#"><input type="checkbox" class="column-checkbox" /> Disk1 Markası</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk1_modeli" href="#"><input type="checkbox" class="column-checkbox" /> Disk1 Modeli</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk1_boyutu" href="#"><input type="checkbox" class="column-checkbox" /> Disk1 Boyutu</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk1_turu" href="#"><input type="checkbox" class="column-checkbox" /> Disk1 Türü</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk2_markasi" href="#"><input type="checkbox" class="column-checkbox" /> Disk2 Markası</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk2_modeli" href="#"><input type="checkbox" class="column-checkbox" /> Disk2 Modeli</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk2_boyutu" href="#"><input type="checkbox" class="column-checkbox" /> Disk2 Boyutu</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="disk2_turu" href="#"><input type="checkbox" class="column-checkbox" /> Disk2 Türü</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="gpu_brand" href="#"><input type="checkbox" class="column-checkbox" /> GPU Markası</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="gpu_model" href="#"><input type="checkbox" class="column-checkbox" /> GPU Modeli</a></li>
+                <li><a class="dropdown-item toggle-column" data-column="gpu_memory" href="#"><input type="checkbox" class="column-checkbox" /> GPU Belleği</a></li>                
               </ul>                      
             </div>
           </div>
@@ -173,16 +181,33 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 sortable" data-sort="department_name">İdari birim</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 sortable" data-sort="department_name">Birim</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 sortable" data-sort="user_name">Ad</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">GSM</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">E-Posta</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CPU</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">RAM</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disk</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">GPU</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        CPU
+                        <br>
+                        <span class="text-secondary text-xs font-weight-light">Marka / Model / Hız</span>
+                      </th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        RAM
+                        <br>
+                        <span class="text-secondary text-xs font-weight-light">Büyüklük / Tip</span>
+                      </th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        Disk
+                        <br>
+                        <span class="text-secondary text-xs font-weight-light"> Marka / Model / Boyut</span>
+                      </th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        GPU
+                        <br>
+                        <span class="text-secondary text-xs font-weight-light">Marka / Model / Memory</span>
+                      </th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">DUZENLE</th>
                     </tr>
+                    
                   </thead>
                   <tbody style="font-size: 15px;" id="systemInfoTable">
                   </tbody>
@@ -263,27 +288,36 @@
   <script src="../assets/js/scripts.js"></script>
   <div class="modal fade" id="profileSettingsModal" tabindex="-1" aria-labelledby="profileSettingsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="profileSettingsModalLabel">Profil Ayarları</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="profileSettingsForm">
-            <div class="mb-3">
-              <label for="profileUsername" class="form-label">Kullanıcı Adı</label>
-              <input type="text" class="form-control" id="profileUsername" name="username" readonly>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profileSettingsModalLabel">Profil Ayarları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="mb-3">
-              <label for="profilePassword" class="form-label">Yeni Şifre</label>
-              <input type="password" class="form-control" id="profilePassword" name="password">
+            <div class="modal-body">
+                <form id="profileSettingsForm">
+                    <div class="mb-3">
+                        <label for="profileUsername" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="profileUsername" name="username" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="profileGsm" class="form-label">GSM</label>
+                        <input type="text" class="form-control" id="profileGsm" name="gsm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="profileEmail" class="form-label">E-posta</label>
+                        <input type="email" class="form-control" id="profileEmail" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="profilePassword" class="form-label">Yeni Şifre</label>
+                        <input type="password" class="form-control" id="profilePassword" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -292,71 +326,117 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForm" class="row g-3">
+                <form id="editForm" class="row g-2">
                     <input type="hidden" id="editId" name="id">
-                    <div class="col-md-6">
-                        <label for="editDepartmentId" class="form-label">İdari birim</label>
+
+                    <!-- Genel Bilgiler -->
+                    <div class="col-12 mb-1">
+                        <h6 class="text-uppercase text-dark font-weight-bold" style="font-size: 0.75rem; margin-bottom: 2px;">Genel Bilgiler</h6>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="editDepartmentId" class="form-label">Birim</label>
                         <select class="form-select" id="editDepartmentId" name="department_id" required>
-                            <option value="">İdari birim Seçin</option>
+                            <option value="">Birim Seçin</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="editUserName" class="form-label">Ad</label>
                         <input type="text" class="form-control" id="editUserName" name="user_name" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="editEmail" class="form-label">E-Posta</label>
                         <input type="email" class="form-control" id="editEmail" name="email" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="editGsm" class="form-label">GSM</label>
                         <input type="text" class="form-control" id="editGsm" name="gsm" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editCpuModel" class="form-label">CPU Modeli</label>
-                        <input type="text" class="form-control" id="editCpuModel" name="cpu_model" required>
+
+                    <!-- CPU Bilgileri -->
+                    <div class="col-12 mb-1 mt-2">
+                        <h6 class="text-uppercase text-dark font-weight-bold" style="font-size: 0.75rem; margin-bottom: 2px;">CPU Bilgileri</h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <label for="editCpuMarkasi" class="form-label">CPU Markası</label>
+                        <input type="text" class="form-control" id="editCpuMarkasi" name="cpu_markasi" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="editCpuModeli" class="form-label">CPU Modeli</label>
+                        <input type="text" class="form-control" id="editCpuModeli" name="cpu_modeli" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="editCpuHizi" class="form-label">CPU Hızı</label>
+                        <input type="text" class="form-control" id="editCpuHizi" name="cpu_hizi" required>
+                    </div>
+
+                    <!-- RAM Bilgileri -->
+                    <div class="col-12 mb-1 mt-2">
+                        <h6 class="text-uppercase text-dark font-weight-bold" style="font-size: 0.75rem; margin-bottom: 2px;">RAM Bilgileri</h6>
+                    </div>
+                    <div class="col-md-4">
                         <label for="editRamSize" class="form-label">RAM Boyutu</label>
                         <input type="text" class="form-control" id="editRamSize" name="ram_size" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="editRamType" class="form-label">RAM Türü</label>
                         <input type="text" class="form-control" id="editRamType" name="ram_type" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk1Model" class="form-label">Disk1 Modeli</label>
-                        <input type="text" class="form-control" id="editDisk1Model" name="disk1_model" required>
+
+                    <!-- Disk Bilgileri -->
+                    <div class="col-12 mb-1 mt-2">
+                        <h6 class="text-uppercase text-dark font-weight-bold" style="font-size: 0.75rem; margin-bottom: 2px;">Disk Bilgileri</h6>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk1Size" class="form-label">Disk1 Boyutu</label>
-                        <input type="text" class="form-control" id="editDisk1Size" name="disk1_size" required>
+                    <div class="col-md-3">
+                        <label for="editDisk1Markasi" class="form-label">Disk1 Markası</label>
+                        <input type="text" class="form-control" id="editDisk1Markasi" name="disk1_markasi" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk1Type" class="form-label">Disk1 Türü</label>
-                        <input type="text" class="form-control" id="editDisk1Type" name="disk1_type" required>
+                    <div class="col-md-3">
+                        <label for="editDisk1Modeli" class="form-label">Disk1 Modeli</label>
+                        <input type="text" class="form-control" id="editDisk1Modeli" name="disk1_modeli" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk2Model" class="form-label">Disk2 Modeli</label>
-                        <input type="text" class="form-control" id="editDisk2Model" name="disk2_model">
+                    <div class="col-md-3">
+                        <label for="editDisk1Boyutu" class="form-label">Disk1 Boyutu</label>
+                        <input type="text" class="form-control" id="editDisk1Boyutu" name="disk1_boyutu" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk2Size" class="form-label">Disk2 Boyutu</label>
-                        <input type="text" class="form-control" id="editDisk2Size" name="disk2_size">
+                    <div class="col-md-3">
+                        <label for="editDisk1Turu" class="form-label">Disk1 Türü</label>
+                        <input type="text" class="form-control" id="editDisk1Turu" name="disk1_turu" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="editDisk2Type" class="form-label">Disk2 Türü</label>
-                        <input type="text" class="form-control" id="editDisk2Type" name="disk2_type">
+                    <div class="col-md-3">
+                        <label for="editDisk2Markasi" class="form-label">Disk2 Markası</label>
+                        <input type="text" class="form-control" id="editDisk2Markasi" name="disk2_markasi">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
+                        <label for="editDisk2Modeli" class="form-label">Disk2 Modeli</label>
+                        <input type="text" class="form-control" id="editDisk2Modeli" name="disk2_modeli">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="editDisk2Boyutu" class="form-label">Disk2 Boyutu</label>
+                        <input type="text" class="form-control" id="editDisk2Boyutu" name="disk2_boyutu">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="editDisk2Turu" class="form-label">Disk2 Türü</label>
+                        <input type="text" class="form-control" id="editDisk2Turu" name="disk2_turu">
+                    </div>
+
+                    <!-- GPU Bilgileri -->
+                    <div class="col-12 mb-1 mt-2">
+                        <h6 class="text-uppercase text-dark font-weight-bold" style="font-size: 0.75rem; margin-bottom: 2px;">GPU Bilgileri</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="editGpuBrand" class="form-label">GPU Markası</label>
+                        <input type="text" class="form-control" id="editGpuBrand" name="gpu_brand" required>
+                    </div>
+                    <div class="col-md-4">
                         <label for="editGpuModel" class="form-label">GPU Modeli</label>
                         <input type="text" class="form-control" id="editGpuModel" name="gpu_model" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="editGpuMemory" class="form-label">GPU Belleği</label>
                         <input type="text" class="form-control" id="editGpuMemory" name="gpu_memory" required>
                     </div>
-                    <div class="col-12">
+
+                    <div class="col-12 mt-3">
                         <button type="submit" class="btn btn-primary">Kaydet</button>
                         <button type="button" class="btn btn-danger" id="deleteButton">Sil</button>
                     </div>
@@ -364,7 +444,11 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
+
+
+
+
 
 </body>
 </html>

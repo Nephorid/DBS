@@ -1,6 +1,6 @@
-Ad: Ali Alizada
-GSM No: 55318508893
-E-posta: ali@gmail.com
+Ad: deneme
+GSM NO: 05399876541
+E-posta: denem@ggmail.com
 Sistem Bilgileri:
 CPU Modeli: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
 RAM Boyutu: 16 GB

@@ -1,30 +1,26 @@
 <?php
-session_start();
-include 'config.php';
+include 'config.php'; // Veritabanı bağlantısı
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+// Eklenecek admin hesabı bilgileri
+$username = 'admin';
+$password = 'admin123';
 
-    if (!empty($username) && !empty($password)) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO logins (username, password) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $hashed_password);
+// Şifreyi hash'leme
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($stmt->execute()) {
-            echo "Yeni profil eklendi!";
-        } else {
-            echo "Profil ekleme hatası!";
-        }
+// SQL sorgusu hazırlama
+$sql = "INSERT INTO logins (username, password) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $username, $hashed_password);
 
-        $stmt->close();
-    } else {
-        echo "Kullanıcı adı ve şifre gerekli!";
-    }
-
-    $conn->close();
+// Sorguyu çalıştırma ve sonucu kontrol etme
+if ($stmt->execute()) {
+    echo "Admin hesabı başarıyla eklendi!";
 } else {
-    echo "Geçersiz istek!";
+    echo "Admin hesabı eklenirken hata oluştu: " . $conn->error;
 }
+
+// Bağlantıyı kapatma
+$stmt->close();
+$conn->close();
 ?>

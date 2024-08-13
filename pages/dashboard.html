@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,11 +9,37 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/ac8bbcfca5.js" crossorigin="anonymous"></script>
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .toggle-container .text {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #f1f1f1;
+      margin-top: 10px;
+    }
+  </style>
 </head>
+
 <body class="g-sidenav-show bg-gray-100">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" id="sidenav-main" style="background-color: #E0E0E0;">
     <div class="sidenav-header">
@@ -61,7 +88,7 @@
                 </g>
               </svg>
             </div>
-           <span class="nav-link-text ms-1">Bilgisayarlar</span>
+            <span class="nav-link-text ms-1">Bilgisayarlar</span>
           </a>
         </li>
       </ul>
@@ -71,8 +98,8 @@
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mt-3" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
-        <div class="collapse navbar-collapse" id="navbar" >
-          <ul class="navbar-nav ms-auto" >
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-user me-sm-1"></i>
@@ -116,7 +143,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Toplam İdari birim Sayısı:</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Toplam Birim Sayısı:</p>
                     <h5 class="font-weight-bolder mb-0">
                       <span id="branchCount">Yükleniyor...</span>
                     </h5>
@@ -131,182 +158,317 @@
             </div>
           </div>
         </div>
-      <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <script>
-                  $(document).ready(function () {
+        <div class="row mt-4">
+          <div class="col-lg-7 mb-lg-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <script>
+                    $(document).ready(function () {
                       $.ajax({
-                          url: "../php/check_session.php",
-                          type: "GET",
-                          dataType: "json",
-                          success: function (response) {
-                              if (response.status === "success") {
-                              } else {
-                                  window.location.href = "sign-in.html";
-                              }
-                          },
-                          error: function () {
-                              window.location.href = "sign-in.html";
+                        url: "../php/check_session.php",
+                        type: "GET",
+                        dataType: "json",
+                        success: function (response) {
+                          if (response.status === "success") {
+                          } else {
+                            window.location.href = "sign-in.html";
                           }
+                        },
+                        error: function () {
+                          window.location.href = "sign-in.html";
+                        }
                       });
-                  });
-                </script>
-                <script>
-                    $(document).ready(function() {
-                        $.ajax({
+                    });
+                  </script>
+                  <script>
+                    $(document).ready(function () {
+                      $.ajax({
+                        url: '../php/get_system_info1.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                          if (response.error) {
+                            console.error(response.error);
+                            $('#computerCount').text('Hata: ' + response.error);
+                          } else {
+                            $('#computerCount').text(response.computer_count);
+                          }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+                          $('#computerCount').text('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+                        }
+                      });
+
+                      $.ajax({
+                        url: '../php/get_branch_count.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                          if (response.error) {
+                            console.error(response.error);
+                            $('#branchCount').text('Hata: ' + response.error);
+                          } else {
+                            $('#branchCount').text(response.branch_count);
+                          }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+                          $('#branchCount').text('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+                        }
+                      });
+                    });
+                  </script>
+                  <div class="col-lg-6">
+                    <div class="d-flex flex-column h-100">
+                      <div class="toggle-container" style="background-color: white;">
+                        <span class="text" style="color: black;">Birimlerdeki Bilgisayar Sayısı:</span>
+                        <button id="departmentToggleBtn" class="btn btn-link p-0">
+                          <i class="fas fa-chevron-down" style="color:#cb0c9f; font-size: 17px; padding-top: 19px;"></i>
+                        </button>
+                      </div>
+                      <div id="departmentCounts" class="content" style="background-color: white;"></div>
+                      <script>
+                        $(document).ready(function () {
+                          $.ajax({
                             url: '../php/get_system_info1.php',
                             type: 'GET',
                             dataType: 'json',
-                            success: function(response) {
-                                if (response.error) {
-                                    console.error(response.error);
-                                    $('#computerCount').text('Hata: ' + response.error);
-                                } else {
-                                    $('#computerCount').text(response.computer_count);
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
-                                $('#computerCount').text('AJAX hatası: ' + textStatus + ', ' + errorThrown);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '../php/get_branch_count.php',
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.error) {
-                                    console.error(response.error);
-                                    $('#branchCount').text('Hata: ' + response.error);
-                                } else {
-                                    $('#branchCount').text(response.branch_count);
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
-                                $('#branchCount').text('AJAX hatası: ' + textStatus + ', ' + errorThrown);
-                            }
-                        });
-                    });
-                </script>
-                <div class="col-lg-6">
-                  <div class="d-flex flex-column h-100">
-                    <h5 class="font-weight-bolder">İdari birimlerdeki bilgisayar sayısı: 
-                      <div style="font-weight:bold; padding-top: 4%;" id="departmentCounts"></div>
-                    </h5>
-                    <script>
-                      $(document).ready(function() {
-                          $.ajax({
-                              url: '../php/get_system_info1.php',
-                              type: 'GET',
-                              dataType: 'json',
-                              success: function(response) {
-                                  if (response.error) {
-                                      console.error(response.error);
-                                      $('#departmentCounts').html('<p>Hata: ' + response.error + '</p>');
-                                  } else {
-                                      var departmentCountsHtml = '';
-                                      response.department_counts.sort((a, b) => b.computer_count - a.computer_count);
-                                      response.department_counts.forEach(function(department) {
-                                          if (department.computer_count > 0) {
-                                              departmentCountsHtml += '<p>' + department.department_name + ': ' + department.computer_count + ' bilgisayar</p>';
-                                          }
-                                      });
-                                      $('#departmentCounts').html(departmentCountsHtml);
+                            success: function (response) {
+                              if (response.error) {
+                                console.error(response.error);
+                                $('#departmentCounts').html('<p>Hata: ' + response.error + '</p>');
+                              } else {
+                                var departmentCountsHtml = '';
+                                response.department_counts.sort((a, b) => b.computer_count - a.computer_count);
+                                response.department_counts.forEach(function (department) {
+                                  if (department.computer_count > 0) {
+                                    departmentCountsHtml += '<p>' + department.department_name + ': ' + department.computer_count + ' bilgisayar</p>';
                                   }
+                                });
+                                $('#departmentCounts').html(departmentCountsHtml);
+                              }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                              console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
+                              $('#departmentCounts').html('<p>AJAX hatası: ' + textStatus + ', ' + errorThrown + '</p>');
+                            }
+                          });
+
+                          $('#departmentToggleBtn').click(function () {
+                            $('#departmentCounts').slideToggle();
+                          });
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                    <div>
+                      <img src="../assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+                      <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                        <img class="w-100 position-relative z-index-2 pt-4" src="../assets/img/illustrations/Mersin_University_logo.svg.png" alt="rocket">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBranchModal">
+                   Birim Ekle
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBranchModal">
+                  Birim Sil
+                </button>
+                <div class="modal fade" id="profileSettingsModal" tabindex="-1" aria-labelledby="profileSettingsModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="profileSettingsModalLabel">Profil Ayarları</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <form id="profileSettingsForm">
+                                  <div class="mb-3">
+                                      <label for="profileUsername" class="form-label">Kullanıcı Adı</label>
+                                      <input type="text" class="form-control" id="profileUsername" name="username" readonly>
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="profileGsm" class="form-label">GSM</label>
+                                      <input type="text" class="form-control" id="profileGsm" name="gsm">
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="profileEmail" class="form-label">E-posta</label>
+                                      <input type="email" class="form-control" id="profileEmail" name="email">
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="profilePassword" class="form-label">Yeni Şifre</label>
+                                      <input type="password" class="form-control" id="profilePassword" name="password">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Kaydet</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                <div class="modal fade" id="deleteBranchModal" tabindex="-1" aria-labelledby="deleteBranchModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="deleteBranchModalLabel"> Birim Sil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="deleteBranchForm">
+                          <div class="mb-3">
+                            <label for="branchSelect" class="form-label"> Birim Seç</label>
+                            <select class="form-select" id="branchSelect" name="branchSelect" required>
+                              <option selected disabled> Birim seçiniz...</option>
+                            </select>
+                          </div>
+                          <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="addBranchModal" tabindex="-1" aria-labelledby="addBranchModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addBranchModalLabel">Yeni  Birim Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="addBranchForm">
+                          <div class="mb-3">
+                            <label for="categorySelect" class="form-label">Kategori Seçin</label>
+                            <select class="form-select" id="categorySelect" name="category_id" required>
+                              <option value="" selected disabled>Kategori Seçin</option>
+                              <option value="1">İdari</option>
+                              <option value="2">Akademik</option>
+                              <option value="3">Araştırma</option>
+                              <option value="4">Diğer</option>
+                            </select>
+                          </div>
+                        
+                          <div class="mb-3">
+                            <label for="departmentTypeSelect" class="form-label">Birim Türü Seçin</label>
+                            <select class="form-select" id="departmentTypeSelect" name="subcategory_id" required>
+                              <option value="" selected disabled>Birim Türü Seçin</option>
+                            </select>
+                          </div>
+                        
+                          <div class="mb-3">
+                            <label for="branchName" class="form-label">Birim Adı</label>
+                            <input type="text" class="form-control" id="branchName" name="branchName" required>
+                          </div>
+                        
+                          <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                        
+                        <script>
+                        $(document).ready(function() {
+                          const departmentTypes = {
+                            1: [
+                              { id: 1, name: 'Daire Başkanlığı' },
+                              { id: 2, name: 'Müdürlük' },
+                              { id: 3, name: 'Koordinatörlük' },
+                              { id: 4, name: 'Genel Sekreterlik' },
+                              { id: 5, name: 'Komisyon' },
+                              { id: 6, name: 'Kurul' },
+                              { id: 7, name: 'Diğer' }
+                            ],
+                            2: [
+                              { id: 8, name: 'Yüksekokul' },
+                              { id: 9, name: 'Meslek Yüksekokulu' },
+                              { id: 10, name: 'Fakülte' },
+                              { id: 11, name: 'Enstitü' },
+                              { id: 12, name: 'Bölüm' },
+                              { id: 13, name: 'Diğer' }
+                            ],
+                            3: [
+                              { id: 14, name: 'Uygulama ve Araştırma Merkezi' },
+                              { id: 15, name: 'Ofis' },
+                              { id: 16, name: 'Laboratuvar' },
+                              { id: 17, name: 'Projeler' },
+                              { id: 18, name: 'Diğer' }
+                            ],
+                            4: [
+                              { id: 19, name: 'Hastaneler' },
+                              { id: 20, name: 'İşletmeler' },
+                              { id: 21, name: 'Diğer' }
+                            ]
+                          };
+                        
+                          $('#categorySelect').change(function() {
+                            const selectedCategory = $(this).val();
+                            const departmentTypeSelect = $('#departmentTypeSelect');
+                            departmentTypeSelect.empty();
+                            departmentTypeSelect.append('<option value="" selected disabled>Birim Türü Seçin</option>');
+                        
+                            if (departmentTypes[selectedCategory]) {
+                              departmentTypes[selectedCategory].forEach(function(type) {
+                                departmentTypeSelect.append('<option value="' + type.id + '">' + type.name + '</option>');
+                              });
+                            }
+                          });
+                        
+                          $('#addBranchForm').on('submit', function(event) {
+                            event.preventDefault();
+                            const formData = $(this).serialize();
+                        
+                            $.ajax({
+                              url: '../php/add_department.php',
+                              type: 'POST',
+                              data: formData,
+                              success: function(response) {
+                                if (response.success) {
+                                  alert('Birim başarıyla eklendi!');
+                                  $('#addBranchModal').modal('hide');
+                                  $('#branchName').val('');
+                                  loadDepartments();
+                                } else {
+                                  alert('Hata: ' + response.error);
+                                }
                               },
                               error: function(jqXHR, textStatus, errorThrown) {
-                                  console.error('AJAX hatası: ' + textStatus + ', ' + errorThrown);
-                                  $('#departmentCounts').html('<p>AJAX hatası: ' + textStatus + ', ' + errorThrown + '</p>');
+                                alert('AJAX hatası: ' + textStatus + ', ' + errorThrown);
                               }
+                            });
                           });
-                      });
-                  </script>
-                  </div>
-                </div>
-                <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                  <div>
-                    <img src="../assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                    <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                      <img class="w-100 position-relative z-index-2 pt-4" src="../assets/img/illustrations/Mersin_University_logo.svg.png" alt="rocket">
+                        
+                          function loadDepartments() {
+                            fetch('../php/get_departments.php')
+                              .then(response => {
+                                if (!response.ok) {
+                                  throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                              })
+                              .then(data => {
+                                const branchSelect = document.getElementById('branchSelect');
+                                branchSelect.innerHTML = '<option selected disabled>İdari birim seçiniz...</option>';
+                                data.forEach(department => {
+                                  const option = document.createElement('option');
+                                  option.value = department.id;
+                                  option.textContent = department.name;
+                                  branchSelect.appendChild(option);
+                                });
+                              })
+                              .catch(error => {
+                                console.error('birimler alınırken hata oluştu:', error);
+                              });
+                          }
+                        
+                          loadDepartments();
+                        });
+                        </script>
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
+                <script src="../assets/js/custom-scripts.js"></script>
               </div>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBranchModal">
-                İdari birim Ekle
-              </button>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBranchModal">
-                İdari birim Sil
-              </button>
-              <div class="modal fade" id="profileSettingsModal" tabindex="-1" aria-labelledby="profileSettingsModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="profileSettingsModalLabel">Profil Ayarları</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form id="profileSettingsForm">
-                        <div class="mb-3">
-                          <label for="profileUsername" class="form-label">Kullanıcı Adı</label>
-                          <input type="text" class="form-control" id="profileUsername" name="username" readonly>
-                        </div>
-                        <div class="mb-3">
-                          <label for="profilePassword" class="form-label">Yeni Şifre</label>
-                          <input type="password" class="form-control" id="profilePassword" name="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Kaydet</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" id="deleteBranchModal" tabindex="-1" aria-labelledby="deleteBranchModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="deleteBranchModalLabel">İdari birim Sil</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form id="deleteBranchForm">
-                        <div class="mb-3">
-                          <label for="branchSelect" class="form-label">İdari birim Seç</label>
-                          <select class="form-select" id="branchSelect" name="branchSelect" required>
-                            <option selected disabled>İdari birim seçiniz...</option>
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-danger">Sil</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" id="addBranchModal" tabindex="-1" aria-labelledby="addBranchModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="addBranchModalLabel">Yeni İdari birim Ekle</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form id="addBranchForm">
-                        <div class="mb-3">
-                          <label for="branchName" class="form-label">İdari birim Adı</label>
-                          <input type="text" class="form-control" id="branchName" name="branchName" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Ekle</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <script src="../assets/js/custom-scripts.js"></script>
             </div>
           </div>
         </div>
@@ -318,4 +480,5 @@
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   </main>
 </body>
+
 </html>

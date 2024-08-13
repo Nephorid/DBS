@@ -1,78 +1,107 @@
 <?php
 include 'config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $department_id = $_POST['department_id'];
-    $user_name = $_POST['user_name'];
-    $email = $_POST['email'];
-    $gsm = $_POST['gsm'];
-    $cpu_model = $_POST['cpu_model'];
-    $ram_size = $_POST['ram_size'];
-    $ram_type = $_POST['ram_type'];
-    $disk1_model = $_POST['disk1_model'];
-    $disk1_size = $_POST['disk1_size'];
-    $disk1_type = $_POST['disk1_type'];
-    $disk2_model = $_POST['disk2_model'];
-    $disk2_size = $_POST['disk2_size'];
-    $disk2_type = $_POST['disk2_type'];
-    $gpu_model = $_POST['gpu_model'];
-    $gpu_memory = $_POST['gpu_memory'];
+header('Content-Type: application/json');
 
-    $conn->begin_transaction();
+// POST verilerini kontrol et
+$id = $_POST['id'] ?? null;
+$department_id = $_POST['department_id'] ?? null;
+$user_name = $_POST['user_name'] ?? null;
+$email = $_POST['email'] ?? null;
+$gsm = $_POST['gsm'] ?? null;
+$cpu_modeli = $_POST['cpu_modeli'] ?? null;
+$cpu_markasi = $_POST['cpu_markasi'] ?? null;
+$cpu_hizi = $_POST['cpu_hizi'] ?? null;
+$ram_size = $_POST['ram_size'] ?? null;
+$ram_type = $_POST['ram_type'] ?? null;
+$disk1_modeli = $_POST['disk1_modeli'] ?? null;
+$disk1_boyutu = $_POST['disk1_boyutu'] ?? null;
+$disk1_turu = $_POST['disk1_turu'] ?? null;
+$disk1_markasi = $_POST['disk1_markasi'] ?? null;
+$disk2_modeli = $_POST['disk2_modeli'] ?? null;
+$disk2_boyutu = $_POST['disk2_boyutu'] ?? null;
+$disk2_turu = $_POST['disk2_turu'] ?? null;
+$disk2_markasi = $_POST['disk2_markasi'] ?? null;
+$gpu_model = $_POST['gpu_model'] ?? null;
+$gpu_memory = $_POST['gpu_memory'] ?? null;
+$gpu_brand = $_POST['gpu_brand'] ?? null;
 
-    try {
-        $sql1 = "UPDATE users
-                 SET department_id = ?, user_name = ?, email = ?, gsm = ?
-                 WHERE id = ?";
-        $stmt1 = $conn->prepare($sql1);
-        $stmt1->bind_param('isssi', $department_id, $user_name, $email, $gsm, $id);
-        $stmt1->execute();
-
-        $sql2 = "UPDATE cpu_info ci
-                 JOIN users u ON u.id = ci.user_id
-                 SET ci.cpu_model = ?
-                 WHERE u.id = ?";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bind_param('si', $cpu_model, $id);
-        $stmt2->execute();
-
-        $sql3 = "UPDATE ram_info ri
-                 JOIN users u ON u.id = ri.user_id
-                 SET ri.ram_size = ?, ri.ram_type = ?
-                 WHERE u.id = ?";
-        $stmt3 = $conn->prepare($sql3);
-        $stmt3->bind_param('ssi', $ram_size, $ram_type, $id);
-        $stmt3->execute();
-
-        $sql4 = "UPDATE disk_info di
-                 JOIN users u ON u.id = di.user_id
-                 SET di.disk1_model = ?, di.disk1_size = ?, di.disk1_type = ?, di.disk2_model = ?, di.disk2_size = ?, di.disk2_type = ?
-                 WHERE u.id = ?";
-        $stmt4 = $conn->prepare($sql4);
-        $stmt4->bind_param('ssssssi', $disk1_model, $disk1_size, $disk1_type, $disk2_model, $disk2_size, $disk2_type, $id);
-        $stmt4->execute();
-
-        $sql5 = "UPDATE gpu_info gi
-                 JOIN users u ON u.id = gi.user_id
-                 SET gi.gpu_model = ?, gi.gpu_memory = ?
-                 WHERE u.id = ?";
-        $stmt5 = $conn->prepare($sql5);
-        $stmt5->bind_param('ssi', $gpu_model, $gpu_memory, $id);
-        $stmt5->execute();
-
-        $conn->commit();
-        echo json_encode(array("status" => "success"));
-    } catch (Exception $e) {
-        $conn->rollback();
-        echo json_encode(array("status" => "error", "message" => $e->getMessage()));
-    }
-
-    $stmt1->close();
-    $stmt2->close();
-    $stmt3->close();
-    $stmt4->close();
-    $stmt5->close();
-    $conn->close();
+if (is_null($id) || is_null($department_id) || is_null($user_name) || is_null($email) || is_null($gsm)) {
+    echo json_encode(array("status" => "error", "message" => "Eksik veya geçersiz form verisi."));
+    exit;
 }
+
+$conn->begin_transaction();
+
+try {
+    // users tablosunu güncelleme
+    $stmt = $conn->prepare("UPDATE users SET department_id = ?, user_name = ?, email = ?, gsm = ? WHERE id = ?");
+    if ($stmt === false) {
+        throw new Exception("Statement prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('isssi', $department_id, $user_name, $email, $gsm, $id);
+    $stmt->execute();
+
+    // cpu_info tablosunu güncelleme
+    $stmt = $conn->prepare("UPDATE cpu_info SET 
+        cpu_modeli = COALESCE(NULLIF(?, ''), cpu_modeli), 
+        cpu_markasi = COALESCE(NULLIF(?, ''), cpu_markasi), 
+        cpu_hizi = COALESCE(NULLIF(?, ''), cpu_hizi) 
+        WHERE user_id = ?");
+    if ($stmt === false) {
+        throw new Exception("Statement prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('sssi', $cpu_modeli, $cpu_markasi, $cpu_hizi, $id);
+    $stmt->execute();
+
+    // ram_info tablosunu güncelleme
+    $stmt = $conn->prepare("UPDATE ram_info SET 
+        ram_size = COALESCE(NULLIF(?, ''), ram_size), 
+        ram_type = COALESCE(NULLIF(?, ''), ram_type) 
+        WHERE user_id = ?");
+    if ($stmt === false) {
+        throw new Exception("Statement prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('ssi', $ram_size, $ram_type, $id);
+    $stmt->execute();
+
+    // disk_info tablosunu güncelleme
+    $stmt = $conn->prepare("UPDATE disk_info SET 
+        disk1_modeli = COALESCE(NULLIF(?, ''), disk1_modeli), 
+        disk1_boyutu = COALESCE(NULLIF(?, ''), disk1_boyutu), 
+        disk1_turu = COALESCE(NULLIF(?, ''), disk1_turu), 
+        disk1_markasi = COALESCE(NULLIF(?, ''), disk1_markasi), 
+        disk2_modeli = COALESCE(NULLIF(?, ''), disk2_modeli), 
+        disk2_boyutu = COALESCE(NULLIF(?, ''), disk2_boyutu), 
+        disk2_turu = COALESCE(NULLIF(?, ''), disk2_turu), 
+        disk2_markasi = COALESCE(NULLIF(?, ''), disk2_markasi) 
+        WHERE user_id = ?");
+    if ($stmt === false) {
+        throw new Exception("Statement prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('ssssssssi', $disk1_modeli, $disk1_boyutu, $disk1_turu, $disk1_markasi, 
+                                 $disk2_modeli, $disk2_boyutu, $disk2_turu, $disk2_markasi, $id);
+    $stmt->execute();
+
+    // gpu_info tablosunu güncelleme
+    $stmt = $conn->prepare("UPDATE gpu_info SET 
+        gpu_model = COALESCE(NULLIF(?, ''), gpu_model), 
+        gpu_memory = COALESCE(NULLIF(?, ''), gpu_memory), 
+        gpu_brand = COALESCE(NULLIF(?, ''), gpu_brand) 
+        WHERE user_id = ?");
+    if ($stmt === false) {
+        throw new Exception("Statement prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('sssi', $gpu_model, $gpu_memory, $gpu_brand, $id);
+    $stmt->execute();
+
+    $conn->commit();
+    echo json_encode(array("status" => "success"));
+} catch (Exception $e) {
+    $conn->rollback();
+    echo json_encode(array("status" => "error", "message" => $e->getMessage()));
+}
+
+$stmt->close();
+$conn->close();
 ?>
